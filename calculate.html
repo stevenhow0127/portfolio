@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice Project</title>
+    <link rel='stylesheet' href='./assets/css/main.css' />
+    <style>
+        #sgt12 {
+            width: 90%;
+            margin: 10px auto;
+            text-align: center;
+            font-size: 0.8em;
+            border-radius: 10px;
+            background-color: white;
+            border: 10px solid #007c4c;
+        }
+
+        #sgt8 {
+            width: 90%;
+            margin: 10px auto;
+            text-align: center;
+            font-size: 0.8em;
+            border-radius: 10px;
+            background-color: white;
+            border: 10px solid #aaa924;
+        }
+
+        #sgt4 {
+            width: 90%;
+            margin: 10px auto;
+            text-align: center;
+            font-size: 0.8em;
+            border-radius: 10px;
+            background-color: white;
+            border: 10px solid #962417;
+        }
+
+        .showcase a {
+            display: inline-block;
+            width: 25%;
+            min-width: 100px;
+            margin: 0 10px;
+            border-bottom: none !important;
+            position: relative;
+            vertical-align: top;
+            font-size: 0.8em;
+            color: black !important;
+            font-weight: bold;
+        }
+
+        .showcase a:hover {
+            color: black !important;
+            top: -1px;
+            left: -1px;
+        }
+
+        .showcase a img {
+            width: 100%;
+        }
+
+        .showcase p {
+            color: black;
+            font-weight: bold;
+        }
+
+        .showDiv {
+            display: none;
+            padding-bottom: 1px;
+        }
+
+        .showDiv h3 {
+            color: #fff;
+            text-shadow: -1px -1px 1px #666;
+            width: 100%;
+            height: 3em;
+            line-height: 3em;
+        }
+
+        #sgt12 h3 {
+            background-color: #007c4c;
+        }
+
+        #sgt8 h3 {
+            background-color: #aaa924;
+        }
+
+        #sgt4 h3 {
+            background-color: #962417;
+        }
+
+        .row input[type='text'] {
+            width: 80px;
+            margin: 5px 20px 20px 0;
+        }
+
+        .row input[type='submit'] {
+            display: block;
+            margin: 10px auto;
+        }
+
+        .inline {
+            display: inline-block;
+        }
+
+        form {
+            margin: 10px auto;
+        }
+
+        .tabs {
+            margin: 0;
+            padding: 0;
+        }
+
+        .tabs li {
+            float: left;
+            list-style: none;
+        }
+
+        .tabs a {
+            display: block;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 5px 20px;
+            background-color: rgba(0, 0, 0, 0.2);
+            border-bottom: none;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+        }
+
+        .panelContainer {
+            background-color: rgba(0, 0, 0, 0.4);
+            clear: left;
+            padding: 20px;
+            margin: 0 auto;
+            border-radius: 5px;
+        }
+
+        .active {
+            background-color: rgba(0, 0, 0, 0.4) !important;
+        }
+
+        .input,
+        .output {
+            width: 100%;
+            height: 3em;
+            line-height: 2.5em;
+            color: white;
+            text-align: center;
+            margin: 20px 0 50px 0;
+            font-weight: bold;
+            border-bottom: 5px solid white;
+        }
+
+        .stepImg {
+            min-width: 200px;
+            max-width: 300px;
+            float: left;
+            margin-right: 30px;
+        }
+
+        .stepImg img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        figcaption {
+            font-size: 0.6em;
+            margin-bottom: 30px;
+        }
+
+        .remark {
+            text-align: center;
+            font-size: 0.6em;
+            line-height: 2em;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id='wrapper'>
+        <div id='main'>
+            <section id='one'>
+                <div class='inner'>
+                    <div class='tabbedPanels'>
+                        <ul class='tabs'>
+                            <li><a href='#panel2'>多階高差</a></li>
+                            <li><a href='#panel1'>單階高差</a></li>
+                        </ul>
+                        <div class='row panelContainer'>
+                            <div class='6u 12u$(medium)'>
+                                <div id='panel1' class='panel'>
+                                    <div class='input'>
+                                        <p>請輸入您的資訊</p>
+                                    </div>
+                                    <div class='stepImg'>
+                                        <img src='./img/cal/singlestep.jpg' />
+                                    </div>
+                                    <form name='simpleForm' id='simpleForm'>
+                                        <div class='inline'>
+                                            <label for='simpleHeight'>高差</label>
+                                            <input type='text' name='simpleHeight' title='請輸入正整數' id='simpleHeight'
+                                                class='required digits' placeholder='cm' />
+                                        </div>
+                                        <hr />
+                                        <input type='submit' id='simpleCal' class='special' value='試算' />
+                                    </form>
+                                </div>
+                                <div id='panel2' class='panel'>
+                                    <div class='input'>
+                                        <p>請輸入您的資訊</p>
+                                    </div>
+                                    <div class='stepImg'>
+                                        <img src='./img/cal/multistep.jpg' />
+                                        <figcaption>(圖例為2階)</figcaption>
+                                    </div>
+                                    <form name='stepForm' id='stepForm'>
+                                        <div class='inline'>
+                                            <label for='stepNum'>階梯數</label>
+                                            <input type='text' name='stepNum' title='請輸入正整數' id='stepNum'
+                                                class='required digits' placeholder='階' />
+                                        </div>
+                                        <div class='inline'>
+                                            <label for='stepHeight'>平均梯高</label>
+                                            <input type='text' name='stepHeight' title='請輸入正整數' id='stepHeight'
+                                                class='required digits' placeholder='cm' />
+                                        </div>
+                                        <div class='inline'>
+                                            <label>平均梯深</label>
+                                            <input type='text' name='stepDepth' title='請輸入正整數' id='stepDepth'
+                                                class='required digits' placeholder='cm' />
+                                        </div>
+                                        <hr />
+                                        <input type='submit' id='stepCal' class='special' value='試算' />
+                                    </form>
+                                </div>
+                            </div>
+                            <div class='6u$ 12u$(medium)'>
+                                <div class='output'>
+                                    <p>推薦產品</p>
+                                </div>
+                                <div id='sgt12' class='showDiv'>
+                                    <h3>不需協助(最安全)</h3>
+                                    <div class='showcase'></div>
+                                </div>
+                                <div id='sgt8' class='showDiv'>
+                                    <h3>需人協助(安全)</h3>
+                                    <div class='showcase'></div>
+                                </div>
+                                <div id='sgt4' class='showDiv'>
+                                    <h3>需人協助(需小心)</h3>
+                                    <div class='showcase'></div>
+                                </div>
+                            </div>
+                        </div>
+                        <p class='remark'>*斜坡板的上下端建議保留【100cm以上】的平坦空間，便利輪椅進入與停靠<br />
+                            **斜坡板推薦產品建立在丈量資料的準確性上，若因現場環境複雜或較難準確丈量，建議與我們聯絡以取得更專業的建議！</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <script src='./assets/js/jquery.min.js'></script>
+    <script src='./assets/js/jquery.validate.js'></script>
+    <script>
+        $(function () {
+            //產品推薦
+            const callSwitch = function (result, output) {
+                const serieRC = "<a><img src='./img/cal/carrySlope.jpg'><span>攜帶式斜坡板</span><p>"
+                const serieFold = "<a><img src='./img/cal/foldSlope.jpg'><span>折疊式斜坡板</span><p>"
+                const serieMazroc = "<a><img src='./img/cal/careSlope.jpg'><span>CareSlope折疊式斜坡板</span><p>"
+                const serieDraw = "<a><img src='./img/cal/drawSlope.jpg'><span>伸縮軌道式斜坡板</span><p>"
+                const RC = serieRC + 'RC</p></a>'
+                const RS_55 = serieFold + 'RS-55</p></a>'
+                const RS_70 = serieFold + 'RS-70</p></a>'
+                const RS_85 = serieFold + 'RS-85</p></a>'
+                const RS_100 = serieFold + 'RS-100</p></a>'
+                const RS_115 = serieFold + 'RS-115</p></a>'
+                const RS_130 = serieFold + 'RS-130</p></a>'
+                const RS_145 = serieFold + 'RS-145</p></a>'
+                const RS_160 = serieFold + 'RS-160</p></a>'
+                const RS_175 = serieFold + 'RS-175</p></a>'
+                const CS_65 = serieMazroc + 'CS-65</p></a>'
+                const CS_100 = serieMazroc + 'CS-100</p></a>'
+                const CS_120 = serieMazroc + 'CS-120</p></a>'
+                const CS_150 = serieMazroc + 'CS-150</p></a>'
+                const CS_175 = serieMazroc + 'CS-175</p></a>'
+                const CS_200 = serieMazroc + 'CS-200</p></a>'
+                const CS_240 = serieMazroc + 'CS-240C</p></a>'
+                const CS_285 = serieMazroc + 'CS-285C</p></a>'
+                const RS_210 = serieDraw + 'RS-210</p></a>'
+                const RS_300 = serieDraw + 'RS-300</p></a>'
+                const none = '<p>無適用產品...</p>'
+                switch (true) {
+                    case result <= 55:
+                        output.empty()
+                        output.append(RC + RS_55 + CS_65).hide().fadeIn()
+                        break
+                    case result <= 65:
+                        output.empty()
+                        output.append(RS_70 + CS_65).hide().fadeIn()
+                        break
+                    case result <= 70:
+                        output.empty()
+                        output.append(RS_70 + CS_100).hide().fadeIn()
+                        break
+                    case result <= 85:
+                        output.empty()
+                        output.append(RS_85 + CS_100).hide().fadeIn()
+                        break
+                    case result <= 100:
+                        output.empty()
+                        output.append(RS_100 + CS_100).hide().fadeIn()
+                        break
+                    case result <= 115:
+                        output.empty()
+                        output.append(RS_115 + CS_120).hide().fadeIn()
+                        break
+                    case result <= 120:
+                        output.empty()
+                        output.append(RS_130 + CS_120).hide().fadeIn()
+                        break
+                    case result <= 130:
+                        output.empty()
+                        output.append(RS_130 + CS_150).hide().fadeIn()
+                        break
+                    case result <= 145:
+                        output.empty()
+                        output.append(RS_145 + CS_150).hide().fadeIn()
+                        break
+                    case result <= 150:
+                        output.empty()
+                        output.append(RS_160 + CS_150).hide().fadeIn()
+                        break
+                    case result <= 160:
+                        output.empty()
+                        output.append(RS_160 + CS_175).hide().fadeIn()
+                        break
+                    case result <= 175:
+                        output.empty()
+                        output.append(RS_175 + CS_175).hide().fadeIn()
+                        break
+                    case result <= 200:
+                        output.empty()
+                        output.append(CS_200 + RS_210).hide().fadeIn()
+                        break
+                    case result <= 210:
+                        output.empty()
+                        output.append(CS_240 + RS_210).hide().fadeIn()
+                        break
+                    case result <= 240:
+                        output.empty()
+                        output.append(CS_240 + RS_300).hide().fadeIn()
+                        break
+                    case result <= 285:
+                        output.empty()
+                        output.append(CS_285 + RS_300).hide().fadeIn()
+                        break
+                    case result <= 300:
+                        output.empty()
+                        output.append(RS_300).hide().fadeIn()
+                        break
+                    default:
+                        output.empty()
+                        output.append(none).hide().fadeIn()
+                        break
+                } // end switch
+            } // end callSwitch
+            //tab頁面
+            $('.tabs a').click(function () {
+                $this = $(this)
+                $('.panel').hide()
+                $('.tabs a.active').removeClass('active')
+                $this.addClass('active').blur()
+                const panel = $this.attr('href')
+                $(panel).fadeIn(250)
+                $('.showDiv').fadeOut()
+                $(':text').val('')
+                return false
+            }) // end click
+            $('.tabs li:first a').click()
+            //送出單階計算數值
+            $('#simpleForm').on('submit', function (e) {
+                e.preventDefault()
+                $(this).validate({
+                    errorPlacement: function (error, element) {
+                        error.appendTo(element.siblings('label'))
+                    }
+                })
+                if ($(this).valid()) {
+                    let height = 0
+                    height += parseInt($('input[name=simpleHeight]').val())
+                    const result12 = height * 12
+                    const result8 = height * 8
+                    const result4 = height * 4
+                    const output12 = $('#sgt12').fadeIn().find('.showcase')
+                    const output8 = $('#sgt8').fadeIn().find('.showcase')
+                    const output4 = $('#sgt4').fadeIn().find('.showcase')
+                    callSwitch(result12, output12)
+                    callSwitch(result8, output8)
+                    callSwitch(result4, output4)
+                } // end if
+            }) // end simpleForm submit
+            //送出多階計算數值
+            $('#stepForm').on('submit', function (e) {
+                e.preventDefault()
+                $(this).validate({
+                    errorPlacement: function (error, element) {
+                        error.appendTo(element.siblings('label'))
+                    }
+                })
+                if ($(this).valid()) {
+                    let steps = 0, height = 0, depth = 0
+                    steps += parseInt($('input[name=stepNum]').val())
+                    height += parseInt($('input[name=stepHeight]').val())
+                    depth += parseInt($('input[name=stepDepth]').val())
+                    const totalHeight = steps * height
+                    const totalDepth = steps * depth
+                    const square = (totalHeight * totalHeight) + (totalDepth * totalDepth)
+                    const sqrt = Math.round(Math.sqrt(square))
+                    const safeRamp = totalHeight * 12
+                    const normalRamp = totalHeight * 8
+                    const dangerRamp = totalHeight * 4
+                    const result12 = Math.max(sqrt, safeRamp)
+                    const result8 = Math.max(sqrt, normalRamp)
+                    const result4 = Math.max(sqrt, dangerRamp)
+                    const output12 = $('#sgt12').fadeIn().find('.showcase')
+                    const output8 = $('#sgt8').fadeIn().find('.showcase')
+                    const output4 = $('#sgt4').fadeIn().find('.showcase')
+                    callSwitch(result12, output12)
+                    callSwitch(result8, output8)
+                    callSwitch(result4, output4)
+                } // end if
+            }) // end stepForm submit
+        }) // end ready
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice Project</title>
+    <link rel='stylesheet' href='./assets/css/main.css' />
+</head>
+
+<body>
+    <div id='wrapper'>
+        <div id='main' class='alt'>
+            <section id='one'>
+                <div class='inner'>
+                    <div class='row'>
+                        <p style='font-size:12pt'>您可以自行在這個空間設置各式無障礙設備，確認配置是否符合您的居家需求：<i
+                                style='font-size: 8pt'>(需開啟JavaScript)</i></p>
+                        <div class='8u 12u$(medium)'>
+                            <span class='place'>
+                                <img src='./img/project/bgImg.jpg' alt='浴廁環境底圖' class='bgImg' />
+                                <img src='./img/project/door.png' alt='推拉門' class='door' />
+                            </span>
+                        </div>
+                        <div class='4u$ 12u$(medium)'>
+                            <div class='actions small'>
+                                <span>扶手</span>
+                                <div class='block'>
+                                    <input type='button' class='button show small' data-type='lRail' value='L型扶手' />
+                                    <input type='button' class='button show small' data-type='mRail' value='活動扶手' />
+                                    <input type='button' class='button show small' data-type='bRail' value='面盆扶手' />
+                                </div>
+                                <span>沐浴</span>
+                                <div class='block row'>
+                                    <div>
+                                        <input type='radio' name='B/S' class='small showR' id='dTub'
+                                            value='開門式浴缸' /><label for='dTub'>開門式浴缸</label>
+                                    </div>
+                                    <div>
+                                        <input type='radio' name='B/S' class='small showR' id='shower'
+                                            value='淋浴+扶手' /><label for='shower'>淋浴+扶手</label>
+                                    </div>
+                                    <div>
+                                        <input type='radio' name='B/S' class='small showR' id='tub'
+                                            value='浴缸+扶手' /><label for='tub'>浴缸+扶手</label>
+                                    </div>
+                                </div>
+                                <span>其他</span>
+                                <div class='block'>
+                                    <input type='button' class='button dOpen small' data-type='door' value='橫拉門' />
+                                    <input type='button' class='button show small' data-type='bar' value='門檻移除' />
+                                    <input type='button' class='button show small' data-type='floor' value='地面止滑' />
+                                </div>
+                            </div>
+                            <br />
+                            <div class='align-center actions small'>
+                                <input type='button' class='button' id="reset"  value='重置' />
+                                <canvas id='canvas' style='display:none' width='720' height='480' ></canvas>
+                                <p><a href='#' id='download' class='button' download>下載規劃圖</a></p>
+                                <span id='double' class='place'>
+                                    <img src='./img/project/bgImg.jpg' alt='浴廁環境底圖' class='bgImg' />
+                                    <img src='./img/project/door.png' alt='推拉門' class='door' />
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <script src="./assets/js/jquery.min.js"></script>
+    <script>
+        function blink() {
+            $('.bgImg').animate({ opacity: 0.5 }, 200).animate({ opacity: 1 }, 200)
+        }
+
+        $(document).ready(function () {
+            $('#download').click(() => {
+                const c = document.getElementById('canvas')
+                const ctx = c.getContext('2d')
+                const door = new Image()
+                door.src = './img/project/door.png'
+                const bgImg = new Image()
+                bgImg.src = './img/project/bgImg.jpg'
+                ctx.drawImage(bgImg, 0, 0, canvas.width, canvas.height)
+                const eImgs = document.getElementsByClassName('bObj')
+                for (let i = 0; i < eImgs.length; i++) {
+                    ctx.drawImage(eImgs[i], 0, 0, canvas.width, canvas.height)
+                    if ($('.door').css('display') != 'none') {
+                        ctx.drawImage(door, 0, 0, canvas.width, canvas.height)
+                    }
+                }
+                if (eImgs.length == 0) {
+                    ctx.drawImage(door, 0, 0, canvas.width, canvas.height)
+                }
+                const rImg = document.getElementsByClassName('rObj')
+                for (let i = 0; i < rImg.length; i++) {
+                    ctx.drawImage(rImg[i], 0, 0, canvas.width, canvas.height)
+                }
+                const dataURL = c.toDataURL('image/png')
+                alert(dataURL)
+                //document.getElementById('download').href = dataURL
+            })
+
+            $('.show').click(function () {
+                const link = $(this).attr('data-type')
+                const imgs = `<img src='./img/project/${link}.png' class='bObj ${link}' />`
+                $(this).toggleClass('special')
+                const tag = $(this).hasClass('special')
+                if (tag) {
+                    $('.place').append(imgs)
+                    blink()
+                } else {
+                    $('.place > .' + link).remove()
+                    blink()
+                }
+            })
+
+            $('.dOpen').click(function () {
+                $('.door').toggle()
+                $(this).toggleClass('special')
+                blink()
+            })
+
+            $('.showR').click(function () {
+                const link = $(this).attr('id')
+                const imgs = `<img src='./img/project/${link}.png' class='rObj ${link}' />`
+                $('.rObj').remove()
+                $('.place').append(imgs)
+                blink()
+            })
+
+            $('#reset').click(() => {
+                $('.bObj, .rObj').remove()
+                $('.door').show()
+                $('*').removeClass('special')
+                $("[name='B/S']:checked").prop('checked', false)
+                blink()
+            })
+        })
+    </script>
+</body>
+
+</html>
