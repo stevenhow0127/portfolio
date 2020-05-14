@@ -98,8 +98,7 @@
                     ctx.drawImage(rImg[i], 0, 0, canvas.width, canvas.height)
                 }
                 const dataURL = c.toDataURL('image/png')
-                alert(dataURL)
-                //document.getElementById('download').href = dataURL
+                document.getElementById('download').href = dataURL
             })
 
             $('.show').click(function () {
