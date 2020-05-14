@@ -16,6 +16,6 @@ app
 
 app.engine('html', require('express-art-template'))
 
-app.listen(88, () => {
+app.listen(80, () => {
     console.log('App server is running...')
 })
