@@ -8,6 +8,8 @@ const app = express()
 app
     .use('/public/', express.static(path.join(__dirname, './public/')))
     .use('/node_modules/', express.static(path.join(__dirname, '../node_modules/')))
+    .use('/assets/', express.static(path.join(__dirname, './assets')))
+    .use('/img/', express.static(path.join(__dirname, './img')))
 
     .use(bodyParser.urlencoded({ extended: false }))
     .use(bodyParser.json())
