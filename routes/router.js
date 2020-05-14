@@ -1,6 +1,4 @@
 const express = require('express')
-//載入加密module
-const md5 = require('blueimp-md5')
 const app = express()
 const router = express.Router()
 
